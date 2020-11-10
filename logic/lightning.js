@@ -133,7 +133,7 @@ async function estimateFee(address, amt, confTarget, sweep) {
 
   if (sweep) {
 
-    const balance = parseInt((await lndService.getWalletBalance()).confirmedBalance, 10);
+    const balance = parseInt((await lndService.getWalletBalance()).totalBalance, 10);
     const amtToEstimate = balance;
 
     if (confTarget === 0) {
