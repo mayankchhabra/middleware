@@ -9,7 +9,7 @@ const LND_HOST = process.env.LND_HOST || '127.0.0.1';
 const TLS_FILE = process.env.TLS_FILE || '/lnd/tls.cert';
 const PROTO_FILE = process.env.PROTO_FILE || './resources/rpc.proto';
 const LND_PORT = process.env.LND_PORT || 10009; // eslint-disable-line no-magic-numbers
-const LND_NETWORK = process.env.LND_NETWORK || 'mainnet'; 
+const LND_NETWORK = process.env.LND_NETWORK || 'mainnet';
 
 // LND changed the macaroon path to ~/.lnd/data/chain/{chain}/{network}/admin.macaroon. We are currently only
 // supporting bitcoind and have that hard coded. However, we are leaving the ability to switch between testnet and
@@ -339,6 +339,7 @@ function openChannel(pubKey, amt, satPerByte) {
   const rpcPayload = {
     node_pubkey_string: pubKey,
     local_funding_amount: amt,
+    spend_unconfirmed: true
   };
 
   if (satPerByte) {
